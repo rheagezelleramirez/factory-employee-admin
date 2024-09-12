@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Factory;
 use App\Http\Requests\FactoryStoreRequest;
 use App\Http\Requests\FactoryUpdateRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class FactoryController extends Controller
@@ -15,7 +17,9 @@ class FactoryController extends Controller
      */
     public function index(): View
     {
-        $factories = Factory::paginate(10);
+        $limit = 10;
+
+        $factories = Factory::paginate($limit);
 
         return view('factories.index', ['factories' => $factories]);
     }
@@ -23,62 +27,61 @@ class FactoryController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Request $request)
+    public function create()
     {
-        //
+        return view('factories.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(FactoryStoreRequest $request)
+    public function store(FactoryStoreRequest $request): RedirectResponse
     {
         $factory = new Factory;
+
         $validated = $request->validated();
 
         $factory->fill($validated);
         $factory->save();
 
-        return $factory;
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return Redirect::route('factories.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $factory = Factory::findOrFail($id);
+
+        return view('factories.edit', ['factory' => $factory]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(FactoryUpdateRequest $request, string $id)
+    public function update(FactoryUpdateRequest $request, string $id): RedirectResponse
     {
         $factory = Factory::findOrFail($id);
+
         $validated = $request->validated();
 
         $factory->fill($validated);
         $factory->save();
 
-        return $factory;
+        return Redirect::route('factories.edit', $factory->id)
+            ->with('status', 'factory-updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
         $factory = Factory::findOrFail($id);
 
         $factory->delete();
+
+        return Redirect::route('factories.index');
     }
 }

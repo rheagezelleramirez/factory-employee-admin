@@ -8,7 +8,11 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 overflow-x-auto">
+                <div class="flex items-center px-6 pt-4">
+                    <x-primary-button
+                        onclick="window.location.href='{{ route('factories.create') }}'">{{ __('Create Factory') }}</x-primary-button>
+                </div>
+                <div class="px-6 pt-5 text-gray-900 overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200">
                         <thead>
                             <tr>
