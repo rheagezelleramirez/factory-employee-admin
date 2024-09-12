@@ -11,7 +11,7 @@ class FactoryUpdateRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -24,8 +24,8 @@ class FactoryUpdateRequest extends FormRequest
         return [
             'factory_name' => ['required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
-            'email' => ['string', 'lowercase', 'email', 'max:255'],
-            'website' => ['string', 'max:255'],
+            'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255'],
+            'website' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
