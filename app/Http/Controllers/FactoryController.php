@@ -74,6 +74,8 @@ class FactoryController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $factory = Factory::findOrFail($id);
+
+        $factory->delete();
     }
 }
