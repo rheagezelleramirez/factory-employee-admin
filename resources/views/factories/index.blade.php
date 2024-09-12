@@ -8,7 +8,7 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 overflow-x-auto">
+                <div class="p-6 text-gray-900 overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200">
                         <thead>
                             <tr>
@@ -20,12 +20,12 @@
                         </thead>
                         <tbody>
                             @foreach ($factories as $factory)
-                                <tr class="even:bg-gray-50 odd:bg-white">
+                                <x-table-row route="factories.edit" :id="$factory->id">
                                     <td class="py-2 px-4 border-b">{{ $factory->factory_name }}</td>
                                     <td class="py-2 px-4 border-b">{{ $factory->location }}</td>
                                     <td class="py-2 px-4 border-b">{{ $factory->email }}</td>
                                     <td class="py-2 px-4 border-b">{{ $factory->website }}</td>
-                                </tr>
+                                </x-table-row>
                             @endforeach
                         </tbody>
                     </table>
