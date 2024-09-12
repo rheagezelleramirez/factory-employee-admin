@@ -19,12 +19,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="even:bg-gray-50 odd:bg-white">
-                                <td class="py-2 px-4 border-b"></td>
-                                <td class="py-2 px-4 border-b"></td>
-                                <td class="py-2 px-4 border-b"></td>
-                                <td class="py-2 px-4 border-b"></td>
-                            </tr>
+                            @foreach ($factories as $factory)
+                                <tr class="even:bg-gray-50 odd:bg-white">
+                                    <td class="py-2 px-4 border-b">{{ $factory->factory_name }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $factory->location }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $factory->email }}</td>
+                                    <td class="py-2 px-4 border-b">{{ $factory->website }}</td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
