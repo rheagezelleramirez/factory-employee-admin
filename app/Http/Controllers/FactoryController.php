@@ -6,15 +6,18 @@ use App\Models\Factory;
 use App\Http\Requests\FactoryStoreRequest;
 use App\Http\Requests\FactoryUpdateRequest;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class FactoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(): View
     {
-        //
+        $factories = Factory::paginate(10);
+
+        return view('factories.index', ['factories' => $factories]);
     }
 
     /**
