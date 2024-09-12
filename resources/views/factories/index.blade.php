@@ -29,6 +29,10 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="mt-4">
+                        {{ $factories->links() }}
+                    </div>
                 </div>
             </div>
         </div>
