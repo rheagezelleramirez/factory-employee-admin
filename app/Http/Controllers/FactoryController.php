@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Factory;
 use App\Http\Requests\FactoryStoreRequest;
+use App\Http\Requests\FactoryUpdateRequest;
 use Illuminate\Http\Request;
 
 class FactoryController extends Controller
@@ -57,9 +58,15 @@ class FactoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(FactoryUpdateRequest $request, string $id)
     {
-        //
+        $factory = Factory::findOrFail($id);
+        $validated = $request->validated();
+
+        $factory->fill($validated);
+        $factory->save();
+
+        return $factory;
     }
 
     /**
