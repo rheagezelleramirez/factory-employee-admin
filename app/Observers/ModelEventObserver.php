@@ -12,7 +12,7 @@ class ModelEventObserver
      */
     public function created(Model $model): void
     {
-        Log::info(class_basename($model) . " created: ID {$model->id}, User ID " . auth()->id());
+        Log::info(class_basename($model) . " created: ID {$model->id}, User ID: " . auth()->id());
     }
 
     /**
@@ -23,7 +23,7 @@ class ModelEventObserver
         $old_values = json_encode($model->getOriginal());
         $new_values = json_encode($model->getChanges());
 
-        Log::info(class_basename($model) . " updated: ID {$model->id},  Old: {$old_values}, New: {$new_values}, User ID " . auth()->id());
+        Log::info(class_basename($model) . " updated: ID {$model->id},  Old: {$old_values}, New: {$new_values}, User ID: " . auth()->id());
     }
 
     /**
@@ -31,6 +31,6 @@ class ModelEventObserver
      */
     public function deleted(Model $model): void
     {
-        Log::info(class_basename($model) . " deleted: ID {$model->id}, User ID " . auth()->id());
+        Log::info(class_basename($model) . " deleted: ID {$model->id}, User ID: " . auth()->id());
     }
 }
