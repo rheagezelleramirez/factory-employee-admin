@@ -24,12 +24,12 @@
                         </thead>
                         <tbody>
                             @foreach ($factories as $factory)
-                                <x-table-row route="factories.edit" :id="$factory->id">
-                                    <td class="py-2 px-4 border-b">{{ $factory->factory_name }}</td>
-                                    <td class="py-2 px-4 border-b">{{ $factory->location }}</td>
-                                    <td class="py-2 px-4 border-b">{{ $factory->email }}</td>
-                                    <td class="py-2 px-4 border-b">{{ $factory->website }}</td>
-                                </x-table-row>
+                            <x-table-row route="factories.edit" :id="$factory->id">
+                                <td class="py-2 px-4 border-b">{{ $factory->factory_name }}</td>
+                                <td class="py-2 px-4 border-b">{{ $factory->location }}</td>
+                                <td class="py-2 px-4 border-b">{{ $factory->email }}</td>
+                                <td class="py-2 px-4 border-b">{{ $factory->website }}</td>
+                            </x-table-row>
                             @endforeach
                         </tbody>
                     </table>
