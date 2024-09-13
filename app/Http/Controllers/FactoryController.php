@@ -6,7 +6,6 @@ use App\Models\Factory;
 use App\Http\Requests\FactoryStoreRequest;
 use App\Http\Requests\FactoryUpdateRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
