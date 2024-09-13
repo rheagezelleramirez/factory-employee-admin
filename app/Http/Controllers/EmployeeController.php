@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\EmployeeStoreRequest;
+use App\Http\Requests\EmployeeUpdateRequest;
+use App\Models\Employee;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 
 class EmployeeController extends Controller
 {
@@ -11,54 +16,71 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+        $limit = 10;
+
+        $employees = Employee::paginate($limit);
+
+        return view('employees.index', ['employees' => $employees]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(): View
     {
-        //
+        return view('employees.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EmployeeStoreRequest $request): RedirectResponse
     {
-        //
-    }
+        $employee = new Employee;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        $validated = $request->validated();
+
+        $employee->fill($validated);
+        $employee->save();
+
+        return Redirect::route('employees.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(string $id): View
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        return view('employees.edit', ['employee' => $employee]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(EmployeeUpdateRequest $request, string $id): RedirectResponse
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        $validated = $request->validated();
+
+        $employee->fill($validated);
+        $employee->save();
+
+        return Redirect::route('employees.edit', $employee->id)
+            ->with('status', 'employee-updated');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(string $id): RedirectResponse
     {
-        //
+        $employee = Employee::findOrFail($id);
+
+        $employee->delete();
+
+        return Redirect::route('employees.index');
     }
 }
