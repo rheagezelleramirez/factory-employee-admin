@@ -19,7 +19,7 @@ class EmployeeController extends Controller
     {
         $limit = 10;
 
-        $employees = Employee::paginate($limit);
+        $employees = Employee::with('factory')->paginate($limit);
 
         return view('employees.index', ['employees' => $employees]);
     }

@@ -28,7 +28,7 @@
                             <x-table-row route="employees.edit" :id="$employee->id">
                                 <td class="py-2 px-4 border-b">{{ $employee->firstname }}</td>
                                 <td class="py-2 px-4 border-b">{{ $employee->lastname }}</td>
-                                <td class="py-2 px-4 border-b">{{ $employee->factory_name }}</td>
+                                <td class="py-2 px-4 border-b">{{ $employee->factory->factory_name ?? '' }}</td>
                                 <td class="py-2 px-4 border-b">{{ $employee->email }}</td>
                                 <td class="py-2 px-4 border-b">{{ $employee->phone }}</td>
                             </x-table-row>
