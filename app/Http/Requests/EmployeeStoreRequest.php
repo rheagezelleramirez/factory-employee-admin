@@ -26,7 +26,7 @@ class EmployeeStoreRequest extends FormRequest
             'lastname' => ['required', 'string', 'max:255'],
             'factory_id' => ['nullable', 'string', 'exists:factories,id'],
             'email' => ['nullable', 'string', 'lowercase', 'email', 'max:255'],
-            'website' => ['nullable', 'string', 'max:255'],
+            'phone' => ['nullable', 'string', 'max:255'],
         ];
     }
 }
