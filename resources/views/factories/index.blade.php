@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex items-center px-6 pt-4">
                     <x-primary-button
-                        onclick="window.location.href='{{ route('factories.create') }}'">{{ __('Create Factory') }}</x-primary-button>
+                        onclick="window.location='{{ route('factories.create') }}'">{{ __('Create Factory') }}</x-primary-button>
                 </div>
                 <div class="px-6 pt-5 text-gray-900 overflow-x-auto">
                     <table class="min-w-full bg-white border border-gray-200">
