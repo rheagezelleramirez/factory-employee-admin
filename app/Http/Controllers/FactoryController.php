@@ -16,9 +16,9 @@ class FactoryController extends Controller
      */
     public function index(): View
     {
-        $limit = 10;
+        $page_limit = 10;
 
-        $factories = Factory::paginate($limit);
+        $factories = Factory::paginate($page_limit);
 
         return view('factories.index', ['factories' => $factories]);
     }
@@ -38,9 +38,7 @@ class FactoryController extends Controller
     {
         $factory = new Factory;
 
-        $validated = $request->validated();
-
-        $factory->fill($validated);
+        $factory->fill($request->validated());
         $factory->save();
 
         return Redirect::route('factories.index');
@@ -63,9 +61,7 @@ class FactoryController extends Controller
     {
         $factory = Factory::findOrFail($id);
 
-        $validated = $request->validated();
-
-        $factory->fill($validated);
+        $factory->fill($request->validated());
         $factory->save();
 
         return Redirect::route('factories.edit', $factory->id)

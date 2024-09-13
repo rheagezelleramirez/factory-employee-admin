@@ -17,9 +17,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $limit = 10;
+        $page_limit = 10;
 
-        $employees = Employee::with('factory')->paginate($limit);
+        $employees = Employee::with('factory')->paginate($page_limit);
 
         return view('employees.index', ['employees' => $employees]);
     }
@@ -41,9 +41,7 @@ class EmployeeController extends Controller
     {
         $employee = new Employee;
 
-        $validated = $request->validated();
-
-        $employee->fill($validated);
+        $employee->fill($request->validated());
         $employee->save();
 
         return Redirect::route('employees.index');
@@ -73,9 +71,7 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
 
-        $validated = $request->validated();
-
-        $employee->fill($validated);
+        $employee->fill($request->validated());
         $employee->save();
 
         return Redirect::route('employees.edit', $employee->id)
