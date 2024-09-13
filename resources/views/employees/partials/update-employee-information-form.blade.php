@@ -27,6 +27,19 @@
         </div>
 
         <div>
+            <x-input-label for="factory_id" :value="__('Factory')" />
+            <select name="factory_id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
+                <option value=""></option>
+
+                @foreach($factories as $factory)
+                <option value="{{ $factory->id }}" {{ $employee->factory_id === $factory->id ? 'selected' : '' }}>
+                    {{ $factory->factory_name }}
+                </option>
+                @endforeach
+            </select>
+        </div>
+
+        <div>
             <x-input-label for="email" :value="__('Email')" />
             <x-text-input id="email" name="email" type="text" class="mt-1 block w-full" :value="old('email', $employee->email)" autofocus autocomplete="email" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />

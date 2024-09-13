@@ -56,7 +56,14 @@ class EmployeeController extends Controller
     {
         $employee = Employee::findOrFail($id);
 
-        return view('employees.edit', ['employee' => $employee]);
+        $factories = Factory::all();
+
+        $data = [
+            'employee' => $employee,
+            'factories' => $factories,
+        ];
+
+        return view('employees.edit', $data);
     }
 
     /**
