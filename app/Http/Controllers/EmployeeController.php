@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\EmployeeStoreRequest;
 use App\Http\Requests\EmployeeUpdateRequest;
 use App\Models\Employee;
+use App\Models\Factory;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -28,7 +29,9 @@ class EmployeeController extends Controller
      */
     public function create(): View
     {
-        return view('employees.create');
+        $factories = Factory::all();
+
+        return view('employees.create', ['factories' => $factories]);
     }
 
     /**
