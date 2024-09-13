@@ -3,6 +3,9 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Observers\ModelEventObserver;
+use App\Models\Factory;
+use App\Models\Employee;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +22,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $observer = new ModelEventObserver();
+
+        Factory::observe($observer);
+        Employee::observe($observer);
     }
 }
