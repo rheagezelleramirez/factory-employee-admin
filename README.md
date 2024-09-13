@@ -1,3 +1,10 @@
+Run the setup script to start the project:
+
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
 Technical Exam Requirements:
 
 1. Create an admin panel to manage factories and their employees using Laravel Framework with a database.
