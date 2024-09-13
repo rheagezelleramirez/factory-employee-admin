@@ -12,7 +12,7 @@
     <x-danger-button x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-factory-deletion')">{{ __('Delete Factory') }}</x-danger-button>
 
-    <x-modal name="confirm-factory-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
+    <x-modal name="confirm-factory-deletion" focusable>
         <form method="post" action="{{ route('factories.destroy', $factory->id) }}" class="p-6">
             @csrf
             @method('delete')
